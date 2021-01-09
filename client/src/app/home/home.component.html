@@ -1,0 +1,56 @@
+<div class="card-columns">
+  <div *ngFor="let landmark of landmarks" class="card border rounded shadow p-3 mb-3">
+    <div class="row no-gutters">
+
+      <!-- Photo thumbnail -->
+      <div class="col-auto border-0">
+        <img *ngIf="landmark.photo_thumb && landmark.photo" (click) = "showImageModal(landmark.photo.url)" src="{{landmark.photo_thumb.url}}" alt="..." class="img-thumbnail card-img">
+        <img *ngIf="!landmark.photo_thumb" src="http://placehold.it/250x250" alt="..." class="img-thumbnail card-img">
+      </div>
+
+      <div class="col">
+        <div class="card-block px-2">
+
+          <!-- Title -->
+          <h4 class="card-title">
+            <a class="title" [routerLink]="['/landmark/', landmark.objectId]">{{landmark.title}}</a>
+          </h4>
+
+          <!-- Short Info -->
+          <p class="card-text text-justify">{{landmark.short_info}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap modal where the image will appear -->
+<div [style.display]="imageModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Title -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="imageModalLabel">Image preview</h4>
+      </div>
+
+      <!-- Original photo -->
+      <div class="modal-body">
+        <img src="{{modalImageUrl}}" alt="" class="img-fluid rounded">
+        <span *ngIf="!isModalImageLoaded" class="spinner-border spinner-border-lg align-items-center align-center"></span>
+      </div>
+
+      <!-- Close modal button -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hideImageModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<!-- Spinner -->
+<ngx-spinner bdColor="rgba(51,51,51,1)" size="medium" type="ball-atom" color="#d9534f" [fullScreen]="true"></ngx-spinner>
+

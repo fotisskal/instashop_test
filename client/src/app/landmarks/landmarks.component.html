@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="landmark" class="col-lg-8">
+
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <!-- Date/Time (Created at) -->
+          <p class="published font-weight-bold mt-3">Published: {{landmark.createdAt}}</p>
+
+          <!-- Title -->
+          <h1 class="title">{{landmark.title}}</h1>
+        </div>
+
+        <!-- Edit Button -->
+        <div *ngIf="isLoggedIn() && isAdmin()" class="col text-right" id="edit_button">
+          <button (click)="onEdit()" class="btn btn-success btn-lg border-dark mt-3">
+            Edit
+          </button>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Date/Time (Updated at) -->
+      <p class="last-updated">Last updated at {{landmark.updatedAt}}</p>
+
+      <hr>
+
+      <!-- Image -->
+      <img *ngIf="landmark.photo" src="{{landmark.photo.url}}" alt="" class="img-fluid rounded">
+      <img *ngIf="!landmark.photo" src="http://placehold.it/900x300" alt="" class="img-fluid rounded">
+
+      <hr>
+
+      <!-- Post Content -->
+      <p class="lead text-justify" contenteditable="true">{{landmark.short_info}}</p>
+
+      <hr>
+
+      <!-- Main Content -->
+      <p class="text-justify">{{landmark.description}}</p>
+
+      <hr>
+
+      <!-- Link to website -->
+      <p class="text-monospace">For more information, please visit this <a href='{{landmark.url}}'>link</a>.</p>
+
+      <hr>
+
+      <!-- Google maps -->
+      <agm-map
+        [latitude]='lat'
+        [longitude]='long'
+        [mapTypeId]='googleMapType'
+        [zoom]='11'
+      >
+        <agm-marker
+          [latitude]='lat'
+          [longitude]='long'>
+        </agm-marker>
+      </agm-map>
+
+      <hr>
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<!-- Spinner -->
+<ngx-spinner bdColor="rgba(51,51,51,1)" size="medium" type="ball-atom" color="#d9534f" [fullScreen]="true"></ngx-spinner>

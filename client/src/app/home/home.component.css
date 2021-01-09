@@ -1,0 +1,41 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.card-columns {
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  column-count: 1;
+  width: 900px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.card {
+  margin-top: 15px;
+  background-color: aliceblue;
+}
+
+.title {
+  color: firebrick;
+}
+
+.text-center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.card-text {
+  color: cadetblue;
+}
+
+.img-thumbnail {
+  border: 0;
+  background: transparent;
+}
+
+.modal {
+  position: absolute;
+  overflow-y: auto;
+}

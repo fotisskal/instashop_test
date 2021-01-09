@@ -1,0 +1,41 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+agm-map{
+  height: 300px;
+}
+
+.col-lg-8 {
+  background-color: beige;
+  max-width: 1024px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.last-updated {
+  font-size: small;
+  text-transform: uppercase;
+  background-color: lavender;
+}
+
+.published {
+  font-size: large;
+  text-transform: uppercase;
+  color: slategray;
+}
+
+#edit_button {
+  max-width: 100px;
+}
+
+.btn-light {
+  font-size: medium;
+}
+
+@media screen and (max-width: 600px) {
+  .col-lg-8 {
+    margin: 16px 0 16px 0;
+  }
+}
+

@@ -1,0 +1,15 @@
+.idea
+
+/node_modules
+
+/client/node_modules
+
+/logs
+
+/resources
+
+package-lock.json
+
+/client/package-lock.json
+
+.env

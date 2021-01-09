@@ -1,0 +1,50 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.navbar-text {
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: bold;
+  color: #169CEE;
+}
+
+.navbar-nav {
+  justify-content: space-around;
+}
+
+.nav {
+  font-size: 1.2rem;
+}
+
+.placeholder {
+  background: url('../assets/background_C.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+alert {
+  position: absolute;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  vertical-align: center;
+  z-index: 10000 !important;
+}
+
+footer {
+  display: block;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  background-color: #2C3D50;
+  position: relative;
+}
+
+.footer-copyright {
+  color: #E2E2E2;
+}

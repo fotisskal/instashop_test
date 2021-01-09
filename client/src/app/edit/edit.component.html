@@ -1,0 +1,46 @@
+<div *ngIf="landmark" class="card mt-5">
+  <h4 class="card-header">Edit Landmark</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- Title -->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" formControlName="title" class="form-control" value="{{landmark.title}}" />
+      </div>
+
+      <!-- Short Info -->
+      <div class="form-group">
+        <label for="shortInfo">Short Info</label>
+        <textarea type="text" name="shortInfo" formControlName="shortInfo" class="form-control h-40" rows="4">{{landmark.short_info}}</textarea>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" name="description" formControlName="description" class="form-control h-40" rows="4">{{landmark.description}}</textarea>
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-group">
+        <label class="btn btn-default">
+          <input type="file"  class="form-control-file" name="file" (change)="selectFile($event)" />
+        </label>
+      </div>
+
+      <!-- Submit/Exit Buttons -->
+      <div class="form-group">
+        <button type="submit" [disabled]="loading" class="btn btn-primary m-1">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Submit
+        </button>
+        <button (click)="exit()" class="btn btn-danger m-1">
+          Exit
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
