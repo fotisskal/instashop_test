@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
 
   hideImageModal()
   {
+    this.isModalImageLoaded = false;
     this.imageModal = false;
   }
 

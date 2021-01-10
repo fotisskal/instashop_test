@@ -1,19 +1,19 @@
 require('dotenv').config();
-var express = require('express');
-var ParseServer = require('parse-server').ParseServer;
-var ParseDashboard = require('parse-dashboard');
-var bodyParser = require('body-parser');
+const express = require('express');
+const ParseServer = require('parse-server').ParseServer;
+const ParseDashboard = require('parse-dashboard');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-var path = require('path');
+const path = require('path');
 
-var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
+let databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
 //Parse Server
-var api = new ParseServer({
+const api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
@@ -24,10 +24,10 @@ var api = new ParseServer({
   }
 });
 
-var options = { allowInsecureHTTP: false };
+let options = { allowInsecureHTTP: false };
 
 //Parse Dashboard
-var dashboard = new ParseDashboard({
+const dashboard = new ParseDashboard({
   "apps": [
     {
       "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
@@ -38,7 +38,7 @@ var dashboard = new ParseDashboard({
   ]
 }, options);
 
-var app = express();
+const app = express();
 
 //Enable Cross-origin resource sharing
 app.use(cors());
@@ -55,15 +55,15 @@ const routesApi = require('./api/routes/index');
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
 // Serve the Parse API and Dashboard on the /parse and /dashboard URL prefixes accordingly
-var mountPath = process.env.PARSE_MOUNT || '/parse';
+let mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 app.use('/dashboard', dashboard);
 
 //Setup API routes
 app.use('/api', routesApi);
 
-var port = process.env.PORT || 1337;
-var httpServer = require('http').createServer(app);
+let port = process.env.PORT || 1337;
+let httpServer = require('http').createServer(app);
 httpServer.listen(port, function() {
     console.log('parse-server-example running on port ' + port + '.');
 });

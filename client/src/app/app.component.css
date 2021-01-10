@@ -9,6 +9,10 @@ body {
   color: #169CEE;
 }
 
+.navbar-text:hover {
+  color: cyan;
+}
+
 .navbar-nav {
   justify-content: space-around;
 }

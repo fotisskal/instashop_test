@@ -13,7 +13,7 @@
 
           <!-- Title -->
           <h4 class="card-title">
-            <a class="title" [routerLink]="['/landmark/', landmark.objectId]">{{landmark.title}}</a>
+            <a class="title text-decoration-none" [routerLink]="['/landmark/', landmark.objectId]">{{landmark.title}}</a>
           </h4>
 
           <!-- Short Info -->
@@ -37,7 +37,7 @@
 
       <!-- Original photo -->
       <div class="modal-body">
-        <img src="{{modalImageUrl}}" alt="" class="img-fluid rounded">
+        <img *ngIf="isModalImageLoaded" src="{{modalImageUrl}}" alt="" class="img-fluid rounded">
         <span *ngIf="!isModalImageLoaded" class="spinner-border spinner-border-lg align-items-center align-center"></span>
       </div>
 

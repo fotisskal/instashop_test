@@ -20,6 +20,10 @@ body {
   color: firebrick;
 }
 
+.title:hover {
+  text-shadow: 1px 1px 1px firebrick;
+}
+
 .text-center {
   position: absolute;
   left: 50%;
@@ -36,6 +40,9 @@ body {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   overflow-y: auto;
 }

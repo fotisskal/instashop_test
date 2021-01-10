@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AccountService, ContentService} from './_services';
+import {AccountService, AlertService, ContentService} from './_services';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,7 @@ import {AccountService, ContentService} from './_services';
 
 export class AppComponent implements OnInit {
   isCollapsed = true;
+  isHomeContentLoaded = false;
   links = [
     {title: 'Home', fragment: 'home'},
     {title: 'Login', fragment: 'login'}
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
   constructor(public route: ActivatedRoute,
               public router: Router,
               private accountService: AccountService,
-              private contentService: ContentService) {
+              private contentService: ContentService,
+              private alertService: AlertService) {
     this.accountService.user.subscribe(x => {
         if (x) {
           this.links = [
@@ -30,7 +32,10 @@ export class AppComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.alertService.clear();
+    this.isHomeContentLoaded = this.contentService.isContentLoaded;
+  }
 
   logout(): void {
     if (this.accountService.isLoggedIn()) {
@@ -42,7 +47,4 @@ export class AppComponent implements OnInit {
     }
   }
 
-  isContentLoaded() {
-    return this.contentService.isContentLoaded;
-  }
 }

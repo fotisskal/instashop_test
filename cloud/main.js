@@ -1,5 +1,5 @@
 require('dotenv').config();
-var Promise = require('bluebird');
+const Promise = require('bluebird');
 const _ = require('lodash');
 const sharp = require("sharp");
 sharp.cache(false); //disable sharp cache -> unlink original file
@@ -7,16 +7,17 @@ const fs = require("fs");
 
 //Import json file contents to parse-server
 Parse.Cloud.define("import", function (request, response) {
-  var className = request.params.className;
-  var rows = request.params.rows;
+  let i;
+  let className = request.params.className;
+  let rows = request.params.rows;
 
-  var MyClass = Parse.Object.extend(className);
+  const MyClass = Parse.Object.extend(className);
 
-  var promises = [];
-  for (var i = 0; i < rows.length; i++) {
-    var myClassObject = new MyClass();
+  const promises = [];
+  for (i = 0; i < rows.length; i++) {
+    let myClassObject = new MyClass();
 
-    for (var column in rows[i]) {
+    for (let column in rows[i]) {
       myClassObject.set(column, rows[i][column]);
     }
 
@@ -73,7 +74,7 @@ Parse.Cloud.define("fetchSorted", (request, response) => {
   let className = request.params.className;
   const query = new Parse.Query(className);
   query.ascending("order");
-  var promises = [];
+  let promises = [];
   promises.push(query.find({ useMasterKey: true }));
   Promise.all(promises)
         .then(
@@ -95,7 +96,7 @@ Parse.Cloud.define("fetchLandmark", (request, response) => {
     let landmarkId = request.params.landmarkId;
     const query = new Parse.Query(className);
     query.equalTo("objectId", landmarkId);
-    var promises = [];
+    let promises = [];
     promises.push(query.find({ useMasterKey: true }));
     Promise.all(promises)
         .then(
@@ -123,7 +124,7 @@ Parse.Cloud.define("editContent", (request, response) => {
             object.set("title", request.params.title);
             object.set("short_info", request.params.shortInfo);
             object.set("description", request.params.description);
-            if (fs.statSync(request.params.photo.path)) {
+            if (request.params.photo && fs.statSync(request.params.photo.path)) {
                 if (request.params.photo.size/1024/1024 <= 5) {
                     let bitmap = fs.readFileSync(request.params.photo.path);
                     let bufferImage = Buffer.from(bitmap);

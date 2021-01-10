@@ -41,6 +41,7 @@ export class EditComponent implements OnInit {
   get f() { return this.form.controls; }
 
   exit(): void {
+    this.alertService.clear();
     this.location.back();
   }
 

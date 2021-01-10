@@ -1,6 +1,7 @@
 # GUIDE
 
 ### Versioning
+* Node 12.8.1
 * Parse Server 2.7.4
 * Parse Dashboard 2.1.0
 * Angular 10
