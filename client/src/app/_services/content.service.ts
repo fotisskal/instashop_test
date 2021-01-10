@@ -12,6 +12,7 @@ export class ContentService {
   constructor(
     private http: HttpClient
   ) {
+    this.isContentLoaded.next(false);
   }
 
   getLandmarks() {

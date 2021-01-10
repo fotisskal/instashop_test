@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {AccountService, AlertService, ContentService} from './_services';
 
@@ -8,7 +8,7 @@ import {AccountService, AlertService, ContentService} from './_services';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewChecked{
   isCollapsed = true;
   isHomeContentLoaded = false;
   links = [
@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
               public router: Router,
               private accountService: AccountService,
               private contentService: ContentService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private cdRef : ChangeDetectorRef) {
     this.accountService.user.subscribe(x => {
         if (x) {
           this.links = [
@@ -30,18 +31,22 @@ export class AppComponent implements OnInit {
           ];
         }
     });
-    this.contentService.isContentLoaded.subscribe(next => {
-      this.isHomeContentLoaded = next;
-    });
   }
 
   ngOnInit(): void {
     this.alertService.clear();
+    this.contentService.isContentLoaded.subscribe(next => {
+      this.isHomeContentLoaded = next;
+    });
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.isCollapsed = true;
       }
     });
+  }
+
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
   }
 
   logout(): void {
