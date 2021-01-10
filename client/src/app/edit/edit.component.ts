@@ -42,7 +42,7 @@ export class EditComponent implements OnInit {
 
   exit(): void {
     this.alertService.clear();
-    this.location.back();
+    this.router.navigateByUrl(`/landmark/${ this.landmark.objectId }`);
   }
 
   selectFile(event): void {
@@ -67,7 +67,7 @@ export class EditComponent implements OnInit {
           this.router.navigateByUrl("/home");
         },
         error: error => {
-          this.alertService.warn(error.error.text);
+          this.alertService.warn(error.error.text, { keepAfterRouteChange: false });
           this.loading = false;
         }
       });

@@ -17,7 +17,6 @@ export class AdminService {
 
   edit(title, shortInfo, description, file: File) {
     const formData: FormData = new FormData();
-    console.log(this.landmark.objectId);
     formData.append('id', this.landmark.objectId);
     formData.append('title', title);
     formData.append('short_info', shortInfo);

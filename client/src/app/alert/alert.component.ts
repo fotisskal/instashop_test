@@ -68,6 +68,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       // remove alert
       this.alerts = this.alerts.filter(x => x !== alert);
     }
+    this.alertService.clear();
   }
 
   cssClass(alert: Alert) {

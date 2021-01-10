@@ -26,7 +26,6 @@ export class LandmarksComponent implements OnInit {
 
   ngOnInit() {
     this.landmarksService.isContentLoaded = false;
-    this.alertService.clear();
     this.spinner.show();
     this.id = this.route.snapshot.params['id'];
     this.landmarksService.getLandmark(this.id)
