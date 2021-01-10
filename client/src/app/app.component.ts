@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {AccountService, AlertService, ContentService} from './_services';
 
 @Component({
@@ -35,6 +35,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.alertService.clear();
     this.isHomeContentLoaded = this.contentService.isContentLoaded;
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.isCollapsed = true;
+      }
+    });
   }
 
   logout(): void {
