@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit() {
-    this.landmarksService.isContentLoaded = false;
+    this.landmarksService.isContentLoaded.next(false);
     this.alertService.clear();
     this.spinner.show();
     this.landmarksService.getLandmarks()
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
           img.addEventListener('load', () => {
             imagesLoaded++;
             if (imagesLoaded === imagesToPreload.length) {
-              this.landmarksService.isContentLoaded = true;
+              this.landmarksService.isContentLoaded.next(true);
               this.spinner.hide();
             }
           });

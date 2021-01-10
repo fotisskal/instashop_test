@@ -29,12 +29,14 @@ export class AppComponent implements OnInit {
             {title: 'Logout', fragment: 'home'}
           ];
         }
-    })
+    });
+    this.contentService.isContentLoaded.subscribe(next => {
+      this.isHomeContentLoaded = next;
+    });
   }
 
   ngOnInit(): void {
     this.alertService.clear();
-    this.isHomeContentLoaded = this.contentService.isContentLoaded;
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.isCollapsed = true;

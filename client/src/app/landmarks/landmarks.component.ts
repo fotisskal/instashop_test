@@ -21,11 +21,10 @@ export class LandmarksComponent implements OnInit {
               private landmarksService: ContentService,
               private accountService: AccountService,
               private editService: AdminService,
-              private spinner: NgxSpinnerService,
-              private alertService: AlertService) {}
+              private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
-    this.landmarksService.isContentLoaded = false;
+    this.landmarksService.isContentLoaded.next(false);
     this.spinner.show();
     this.id = this.route.snapshot.params['id'];
     this.landmarksService.getLandmark(this.id)
@@ -40,11 +39,11 @@ export class LandmarksComponent implements OnInit {
           const img = new Image();
           img.src = this.landmark.photo.url;
           img.addEventListener('load', () => {
-            this.landmarksService.isContentLoaded = true;
+            this.landmarksService.isContentLoaded.next(true);
             this.spinner.hide();
           });
         }
-        this.landmarksService.isContentLoaded = true;
+        this.landmarksService.isContentLoaded.next(true);
         this.spinner.hide();
       });
   }
