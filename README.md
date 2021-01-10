@@ -48,7 +48,7 @@
 ### Run Angular Client
 * Run the client with: `ng serve --poll=2000 --open`
 
-#Alternatives/Extras
+# Alternatives/Extras
 * Docker usage
 * For home page, instead of a card list, a grid view (eg. 2 columns) could be used or even a carousel.
 * For editing, preview capability before uploading an image as well as rotation.
